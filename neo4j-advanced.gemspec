@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.platform      = 'java'
-  s.add_runtime_dependency "neo4j-community"
+  s.add_runtime_dependency "neo4j-community", "~> 1.6.0"
 
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
