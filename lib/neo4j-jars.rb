@@ -1,1 +1,1 @@
-require "neo4j-community"
+require "neo4j-advanced"
