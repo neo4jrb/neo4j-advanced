@@ -11,6 +11,7 @@ module Neo4j
     def self.load_jars!
       require 'java'
       require 'neo4j-community'
+      ::Neo4j::Community.ensure_version!(Advanced::NEO_VERSION, 'advanced')
       Dir["#{jars_root}/*.jar"].each {|jar| require jar }
     end
 
