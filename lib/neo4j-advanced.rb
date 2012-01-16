@@ -5,7 +5,7 @@ module Neo4j
   module Advanced
 
     def self.jars_root
-      "#{File.dirname(__FILE__)}/neo4j-advanced/jars"
+      File.join("#{File.dirname(__FILE__)}", "neo4j-advanced", "jars")
     end
 
     def self.load_jars!
