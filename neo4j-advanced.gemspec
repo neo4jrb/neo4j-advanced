@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "neo4j-community", "~> 1.6.0.alpha"
 
+  s.platform = 'java'
+
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"
