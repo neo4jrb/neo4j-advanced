@@ -4,6 +4,7 @@ source "http://rubygems.org"
 gemspec
 
 group 'test' do
+  gem 'neo4j-community', :path => '../neo4j-community'
   gem "rspec", "= 2.6.0"
   gem "neo4j"
 end
