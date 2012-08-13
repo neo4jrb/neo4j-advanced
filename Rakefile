@@ -28,9 +28,10 @@ end
 desc "Delete old Jar files"
 task :delete_old_jar do
   root = File.expand_path("./lib/neo4j-advanced/jars")
+  system "mkdir -p #{root}" unless File.exist?(root)
   files = Dir.new(root).entries.find_all{|f| f =~ /\.jar/}
   files.each do |file|
-    system "rm #{root}/#{file}"
+    system "git rm #{root}/#{file}"
   end
 end
 
@@ -46,5 +47,10 @@ desc "Upgrade using downloaded ...tar.gz file in ./tmp"
 task :upgrade => [:delete_old_jar] do
   system "cd tmp; tar xf #{source_file}"
   jars = File.expand_path("./lib/neo4j-advanced/jars")
-  jar_files_to_copy.each {|f| system "cp #{unpack_lib_dir}/#{f} #{jars}" if include_jar?(f)}
+  system "mkdir -p #{jars}"
+  jar_files_to_copy.each do |f| 
+    next unless include_jar?(f)
+    system "cp #{unpack_lib_dir}/#{f} #{jars}/"
+    system "git add -f #{jars}/#{f}"
+  end
 end
