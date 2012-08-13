@@ -1,13 +1,23 @@
 require "bundler/gem_tasks"
 
+def download_folder
+  abort "Please create a #{File.expand_path('tmp')} folder and copy the neo4j advanced gz/tar file downloaded from http://neo4j.org/download" unless File.directory?('tmp')
+  Dir.new('tmp')
+end
+
+def tar_file
+  download_folder.entries.find { |x| x =~ /gz$/ || x =~ /tar$/}.tap do |f|
+    abort "expected a neo4j .gz/.tar file in folder #{File.expand_path(download_folder.path)}"  unless f
+  end
+end
+
 def source_file
-  gz_file = Dir.new('tmp').entries.find { |x| x =~ /gz$/ }
-  File.expand_path("./tmp/#{gz_file}")
+  File.expand_path("./tmp/#{tar_file}")
 end
 
 def unpack_lib_dir
-  gz_file = Dir.new('tmp').entries.find { |x| x =~ /gz$/ }
-  dir = gz_file.gsub('-unix.tar.gz', '')
+  dir = tar_file.gsub('-unix.tar.gz', '')
+  dir = dir.gsub('-unix.tar', '')
   File.expand_path("./tmp/#{dir}/lib")
 end
 
