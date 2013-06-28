@@ -17,5 +17,6 @@ db/
 
 Gemfile.lock
 coverage
+.DS_Store
 
 .DS_Store
